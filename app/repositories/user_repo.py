@@ -7,11 +7,20 @@ class User_repo:
         users = User.query.all()
         return users
 
-    def update_user(self, user_id, user):
-        user = User.query.get(user_id)
-        if not user:
-            return {"message": "User does not exist"}, 404
-        user.name = user.name
-        db.session.add(user)
+    def update_user(self, user_id, data):
+        user_obj = User.query.get(user_id)
+        if not user_obj:
+            raise FileNotFoundError("User not found")
+
+        user_obj.name = data["name"]
+
         db.session.commit()
-        return {"message": "Success update user"}, 201
+        return user_obj
+
+    def delete_user(self, user_id):
+        user_obj = User.query.get(user_id)
+        if not user_obj:
+            raise FileNotFoundError("User not found")
+        db.session.delete(user_obj)
+        db.session.commit()
+        return

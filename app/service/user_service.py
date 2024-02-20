@@ -11,4 +11,8 @@ class User_service:
 
     def update_user(self, user_id, data):
         updated_user = self.user_repo.update_user(user_id, data)
-        return updated_user
+        return updated_user.as_dict()
+
+    def delete_user(self, user_id):
+        self.user_repo.delete_user(user_id)
+        return
