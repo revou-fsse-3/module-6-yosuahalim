@@ -27,7 +27,7 @@ migrate.init_app(app, db)
 # bcrypt = Bcrypt(app)
 
 # app.register_blueprint(pokemon.pokemon_blueprint, url_prefix="/pokemon")
-app.register_blueprint(user_route.user_blueprint, url_prefix="/user")
+app.register_blueprint(user_route.user_blueprint, url_prefix="/v1/users")
 
 
 @app.route("/")
